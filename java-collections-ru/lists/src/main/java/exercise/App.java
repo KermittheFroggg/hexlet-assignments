@@ -13,11 +13,11 @@ public class App {
         String lowerWord = word.toLowerCase();
         String[] arrayWord = lowerWord.split("");
 
-        for (var i = 0; i < arrayWord.length - 1; i++) {
+        for (var i = 0; i < arrayWord.length; i++) {
             if (!listSymbols.contains(arrayWord[i])) {
                 return false;
             } else if (listSymbols.contains(arrayWord[i])) {
-                list.remove(arrayWord[i]);
+                listSymbols.remove(arrayWord[i]);
             }
         }
         return true;
