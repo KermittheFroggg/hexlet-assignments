@@ -1,6 +1,8 @@
 package exercise;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
+
 
 // BEGIN
 public class App {
@@ -8,7 +10,7 @@ public class App {
         String[][] array = Arrays.stream(image)
                 .flatMap(u -> Stream.of(u, u))
                 .map(y -> Arrays.asList(y).stream()
-                        .flatMap(x -> Arrays.asList(x, x).stream())
+                        .flatMap(x -> Stream.of(x, x).stream())
                         .toArray(String[]::new))
                 .toArray(String[][]::new);
         return array;
