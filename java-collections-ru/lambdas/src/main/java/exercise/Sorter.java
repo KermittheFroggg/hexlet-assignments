@@ -14,8 +14,7 @@ public class Sorter {
     public static List<String> takeOldestMans(List<Map<String, String>> people) {
         List<Map<String, String>> mutablePeople = new ArrayList<>(people);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        mutablePeople.sort(Comparator.comparing((Map<String, String> man) -> LocalDate.parse(man.get("birthday"),
-                formatter)).reversed());
+        Collections.sort(mutablePeople, Comparator.comparing(man  -> LocalDate.parse(man.get("birthday"), formatter)));
         return mutablePeople.stream()
                 .filter(man -> man.get("gender").equals("male"))
                 .map(man -> man.get("name"))
