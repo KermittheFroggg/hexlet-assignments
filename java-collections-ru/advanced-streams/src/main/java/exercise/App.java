@@ -8,7 +8,8 @@ public class App {
     public static String getForwardedVariables(String str) {
         String sortedStr = Arrays.stream(str.split("\n"))
                 .filter(field -> field.startsWith("environment"))
-                .map(field2 -> field2.replaceAll("environment=\"",","))
+                .map(field2 -> field2.replaceAll("environment=",","))
+                .map(field4 -> field4.replaceAll("\"",""))
                 .collect(Collectors.joining(","));
         String sortedStr2 = Arrays.stream(sortedStr.split(","))
                 .filter(field -> field.startsWith("X_FORWARDED_"))
