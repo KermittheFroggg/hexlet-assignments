@@ -19,7 +19,8 @@ public final class App {
         // BEGIN
         app.get("/users", ctx -> {
             int page = ctx.queryParamAsClass("page", Integer.class).getOrDefault(1);
-            ctx.json(USERS.subList((page - 1) * 5, page * 5));
+            int per = ctx.queryParamAsClass("per", Integer.class).getOrDefault(5);
+            ctx.json(USERS.subList((page - 1) * per, page * per));
         });
         // END
 
