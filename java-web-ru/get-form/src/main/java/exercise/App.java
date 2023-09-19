@@ -35,7 +35,7 @@ public final class App {
                     }
                 }
             } else {
-                users = USERS;
+                users = USERS;//s
             }
             UsersPage page = new UsersPage(users, term);
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
