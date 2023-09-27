@@ -66,7 +66,8 @@ public class PostsController {
                 .orElseThrow(() -> new NotFoundResponse("Entity with id = " + id + " not found"));
 
         try {
-
+            var page = new EditPostPage(strId, post.getName(), post.getBody(), null);
+            ctx.render("posts/edit.jte", Collections.singletonMap("page", page));
         } catch (ValidationException e) {
             var page = new EditPostPage(strId, post.getName(), post.getBody(), e.getErrors());
             ctx.render("posts/edit.jte", Collections.singletonMap("page", page));
@@ -83,7 +84,9 @@ public class PostsController {
             var body = ctx.formParamAsClass("body", String.class)
                     .check(value -> value.length() >= 10, "Пост должен быть не короче 10 символов")
                     .get();
-            PostRepository.getEntities().set((int) (id - 1), new Post(name, body));
+            Post post = new Post(id, name, body);
+            PostRepository.getEntities().set((int) (id - 1), post);
+            PostRepository.save(post);
             ctx.redirect(NamedRoutes.postsPath());
         } catch (ValidationException e) {
             var name = ctx.formParam("name");
