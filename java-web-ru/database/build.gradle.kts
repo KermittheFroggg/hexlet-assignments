@@ -22,7 +22,8 @@ repositories {
 
 dependencies {
     // BEGIN
-    
+    implementation("com.h2database:h2:2.2.220")
+    implementation("com.zaxxer:HikariCP:5.0.1")
     // END
     implementation("io.javalin:javalin:5.6.1")
     implementation("gg.jte:jte:3.0.1")

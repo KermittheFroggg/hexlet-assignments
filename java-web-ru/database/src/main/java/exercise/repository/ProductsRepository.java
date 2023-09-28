@@ -16,7 +16,7 @@ public class ProductsRepository extends BaseRepository {
         try (var conn = dataSource.getConnection();
              var preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, product.getTitle());
-            preparedStatement.setString(2, product.getPrice());
+            preparedStatement.setString(2, String.valueOf(product.getPrice()));
             preparedStatement.executeUpdate();
             var generatedKeys = preparedStatement.getGeneratedKeys();
             // Устанавливаем ID в сохраненную сущность
@@ -36,8 +36,8 @@ public class ProductsRepository extends BaseRepository {
             var resultSet = stmt.executeQuery();
             if (resultSet.next()) {
                 var title = resultSet.getString("title");
-                var price = resultSet.getInteger("price");
-                var product = new Product(title, price);
+                var price = resultSet.getString("price");
+                var product = new Product(title, Integer.valueOf(price));
                 product.setId(id);
                 return Optional.of(product);
             }
@@ -54,8 +54,8 @@ public class ProductsRepository extends BaseRepository {
             while (resultSet.next()) {
                 var id = resultSet.getLong("id");
                 var title = resultSet.getString("title");
-                var price = resultSet.getInteger("price");
-                var product = new Product(title, price);
+                var price = resultSet.getString("price");
+                var product = new Product(title, Integer.valueOf(price));
                 product.setId(id);
                 result.add(product);
             }
