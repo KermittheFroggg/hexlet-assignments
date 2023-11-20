@@ -16,7 +16,10 @@ public class Application {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                System.out.println("Method " + method.getName() + "returns a value of type " + method.getReturnType());
+                String methodType = String.valueOf(method.getReturnType());
+                String lastPart = methodType.split("\\.")[methodType.split("\\.").length - 1];
+
+                System.out.println("Method " + method.getName() + " returns a value of type " + lastPart);
             }
         }
         // END
