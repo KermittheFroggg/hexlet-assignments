@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class WelcomeController {
 
     @Autowired
-    private Daytime getDaytime;
+    private Daytime daytime;
 
     @GetMapping("/welcome")
     public String welcome() {
-        String response = "It is " + getDaytime.getName() + " now! Welcome to Spring!";
+        String response = "It is " + daytime.getName() + " now! Welcome to Spring!";
         return response;
     }
 }

@@ -2,7 +2,7 @@ package exercise.daytime;
 import jakarta.annotation.PostConstruct;
 
 public class Night implements Daytime {
-    private String name;
+    private String name = "night";
 
     public String getName() {
         return name;
@@ -11,7 +11,7 @@ public class Night implements Daytime {
     // BEGIN
     @PostConstruct
     public void init() {
-        name = "night";
+
     }
     // END
 }

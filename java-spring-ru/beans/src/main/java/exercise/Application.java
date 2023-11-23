@@ -10,7 +10,7 @@ import exercise.daytime.Day;
 import exercise.daytime.Night;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.context.annotation.Scope;
 
 // BEGIN
 
@@ -25,7 +25,7 @@ public class Application {
 
     // BEGIN
     @Bean
-    @RequestScope
+    @Scope("singleton")
     public Daytime getDaytime() {
         int hour = LocalDateTime.now().getHour();
 
@@ -34,5 +34,7 @@ public class Application {
         }
         return new Night();
     }
+
+
     // END
 }
