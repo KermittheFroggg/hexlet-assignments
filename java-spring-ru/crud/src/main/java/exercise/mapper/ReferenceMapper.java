@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
         componentModel = MappingConstants.ComponentModel.SPRING,
         imports = {BaseEntity.class}
 )
-public abstract class ReferenceMapper{
+public abstract class ReferenceMapper {
     @Autowired
     private EntityManager entityManager;
 
