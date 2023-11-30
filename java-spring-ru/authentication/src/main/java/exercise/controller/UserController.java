@@ -49,7 +49,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO create(@Valid @RequestBody UserCreateDTO userData) {
         var user = userMapper.map(userData);
-
+        System.out.println("\n\n\n\n\n!!!!!!!!!!!"+user.getName());
         userRepository.save(user);
         var userDto = userMapper.map(user);
         return userDto;
