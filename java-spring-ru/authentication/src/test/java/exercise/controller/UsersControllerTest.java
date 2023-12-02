@@ -86,7 +86,6 @@ class UsersControllerTest {
         var request = post("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(om.writeValueAsString(testUser));
-
         mockMvc.perform(request)
                 .andExpect(status().isCreated());
 

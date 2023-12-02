@@ -48,8 +48,17 @@ public class UserController {
     @PostMapping(path = "")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO create(@Valid @RequestBody UserCreateDTO userData) {
+        System.out.println("\n\n\n\n\n\n\n\n\n\n!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(userData.getEmail());
+        System.out.println(userData.getName());
+        System.out.println(userData.getPasswordDigest());
         var user = userMapper.map(userData);
-        System.out.println("\n\n\n\n\n!!!!!!!!!!!"+user.getName());
+        System.out.println("\n\n\n\n\n\n\n\n\n\n???????????????");
+        System.out.println(user.getEmail());
+        System.out.println(user.getName());
+        System.out.println(user.getPasswordDigest());
+        System.out.println(user.getPassword());
+        System.out.println(user.getUsername());
         userRepository.save(user);
         var userDto = userMapper.map(user);
         return userDto;

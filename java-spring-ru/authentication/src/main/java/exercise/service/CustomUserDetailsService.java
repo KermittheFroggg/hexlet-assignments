@@ -1,5 +1,6 @@
 package exercise.service;
 
+import exercise.model.User;
 import exercise.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,9 +16,11 @@ public class CustomUserDetailsService implements UserDetailsManager {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // Нужно добавить в репозиторий findByEmail
         var user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return user;
@@ -25,8 +28,11 @@ public class CustomUserDetailsService implements UserDetailsManager {
 
     @Override
     public void createUser(UserDetails userData) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createUser'");
+        var user = new User();
+        user.setEmail(userData.getUsername());
+        var hashedPassword = passwordEncoder.encode(userData.getPassword());
+        user.setPasswordDigest(hashedPassword);
+        userRepository.save(user);
     }
 
     @Override

@@ -21,7 +21,6 @@ public abstract class UserMapper {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     public abstract User map(UserCreateDTO dto);
 
     public abstract UserDTO map(User model);
